@@ -1,0 +1,157 @@
+.anchor-links {
+    margin-bottom: 5rem;
+    padding-top: 5rem;
+    position: relative;
+}
+
+.anchor-links__menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.anchor-links__inner {
+    position: relative;
+}
+
+.anchor-links__nav {
+    position: relative;
+    z-index: 1;
+}
+
+.anchor-links__nav-control {
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    padding: 2.45rem;
+}
+
+.anchor-links__menu {
+    border-top: 1px solid #999;
+}
+
+.anchor-links__sections {
+    /*
+     Additional padding for dropdown menu so the
+     content doesn't jump when nav becomes fixed.
+    */
+    padding-top: calc(var(--dropdown-height-mobile) + 2rem);
+}
+
+.anchor-links__menu-link {
+    border-bottom: 1px solid #999;
+    color: #fff;
+    display: block;
+    padding: 2.4rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.anchor-links__menu-link:focus {
+    color: inherit;
+}
+
+.anchor-links__menu-link:hover,
+.anchor-links__menu-link.is-active {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.anchor-links__nav-control:after {
+     transform: rotate(-90deg);
+     z-index: 1;
+}
+
+/* Sidebar sticky modifier. */
+.anchor-links__sidebar--sticky {
+    /*
+      Since fixed elements go out of flow and are related to the viewport,
+      let's make the sidebar sticky and assign container's settings to it
+      so we can calculate the right width/position for inside nav element.
+      So it's: container max-width - container's padding.
+    */
+    max-width: calc(var(--container-width) - (var(--container-gutter) * 2));
+
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    position: fixed;
+    top: 6rem;
+}
+
+/* Update top value if we have other fixed elements on page. */
+.page--fixed-header .anchor-links__sidebar--sticky {
+    top: 6rem;
+}
+
+
+@media screen and (max-width: 1023px) {
+    .anchor-links__sidebar {
+        /* Covering additional padding added to sections. */
+        margin-bottom: calc(var(--dropdown-height-mobile) * -1);
+        z-index: 1;
+    }
+
+    .anchor-links__menu {
+        background-color: #000;
+        display: none;
+        left: 0;
+        top: 0;
+        position: absolute;
+        width: 100%;
+    }
+
+    /* Nav visibility modifier */
+    .anchor-links__nav--active .anchor-links__menu {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .anchor-links__nav {
+        float: right;
+        margin: 0;
+        width: var(--sidebar-width);
+    }
+
+
+    .anchor-links__nav-control {
+        display: none;
+    }
+
+    .anchor-links__sections {
+        padding-top: 0;
+        padding-right: 5rem;
+        position: relative; /* required because of manipulations with fixed nav. */
+        width: var(--sections-width);
+    }
+
+    .anchor-links__menu-link {
+        color: #555;
+    }
+
+    .anchor-links__menu-link:hover,
+    .anchor-links__menu-link.is-active {
+        background-color: #999;
+        border-bottom-color: #fff;
+        text-decoration: none;
+    }
+
+    .anchor-links__sidebar--sticky {
+        top: 0;
+    }
+
+    .anchor-links__sidebar--absolute {
+        bottom: 0;
+        position: absolute;
+        top: auto !important;
+    }
+
+    .anchor-links__sidebar--absolute .anchor-links__nav {
+    /* Update sidenav width and position on position absolute switch. */
+        right: 0;
+        width: var(--sidebar-width);
+    }
+}

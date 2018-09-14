@@ -1,0 +1,60 @@
+:root {
+    --container-width: 140rem;
+    --container-gutter: 2rem;
+    --dropdown-height-mobile: 6.7rem;
+    --sections-width: 65%;
+    --sidebar-width: 35%;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+/* All the REM measurements are based on 10px sizing. So basically 1.5rem = 15px :) */
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0 0 2rem;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: var(--container-width);
+    padding-left: var(--container-gutter);
+    padding-right: var(--container-gutter);
+}
+
+.content-placeholder {
+    align-items: center;
+    background-color: #999;
+    color: #fff;
+    display: flex;
+    height: 50rem;
+    justify-content: center;
+}
+
+.header {
+    align-items: center;
+    background-color: #666;
+    color: #fff;
+    display: flex;
+    height: 6rem;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+
+.header h1 {
+    margin-bottom: 0;
+}
