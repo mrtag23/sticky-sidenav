@@ -68,28 +68,28 @@
     $nav = $('.anchor-links__nav '),
     $anchorLinks = $('.anchor-links'),
     additionalOffset = windowOffsetAdjust(),
-    navViewportOffset = $sidebar.offset(),
-    anchorLinksViewportOffset = $anchorLinks.offset(),
+    navOffset = $sidebar.offset(),
+    anchorLinksOffset = $anchorLinks.offset(),
     stickyFlag = 'anchor-links__sidebar--sticky',
     absoluteFlag = 'anchor-links__sidebar--absolute',
-    navOffset = navViewportOffset.top,
-    anchorLinksOffset = anchorLinksViewportOffset.top + $anchorLinks.outerHeight(),
+    navTopOffset = navOffset.top,
 
     // Calculates nav/window offsets and sets/un-sets nav as fixed.
     fixNav = function() {
-      var pageOffset = window.pageYOffset + additionalOffset,
-        pageSidebarOffset = pageOffset + $nav.outerHeight();
+      var pageScroll = window.pageYOffset + additionalOffset,
+        anchorLinksBottomOffset = anchorLinksOffset.top + $anchorLinks.outerHeight(),
+        pageSidebarOffset = pageScroll + $nav.outerHeight();
 
-      if (navOffset < 1) {
-        navOffset = $('.anchor-links__sidebar').offset().top;
+      if (navTopOffset < 1) {
+        navTopOffset = $('.anchor-links__sidebar').offset().top;
       }
 
-      if (pageOffset > navOffset && pageSidebarOffset < anchorLinksOffset) {
+      if (pageScroll > navTopOffset && pageSidebarOffset < anchorLinksBottomOffset) {
         $sidebar.addClass(stickyFlag).removeClass(absoluteFlag);
-      } else if (pageOffset > navOffset && pageSidebarOffset > anchorLinksOffset) {
+      } else if (pageScroll > navTopOffset && pageSidebarOffset > anchorLinksBottomOffset) {
         // Add absoluteFlag as well in case the page was reloaded from not top position.
         $sidebar.addClass(stickyFlag).addClass(absoluteFlag);
-      } else if (pageOffset > navOffset && pageSidebarOffset < anchorLinksOffset) {
+      } else if (pageScroll > navTopOffset && pageSidebarOffset < anchorLinksBottomOffset) {
         $sidebar.removeClass(absoluteFlag);
       } else {
         $sidebar.removeClass(stickyFlag);
